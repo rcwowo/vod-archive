@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  vod: CollectionEntry<'vods'>
+}
+
+const { vod} = Astro.props
+---
+
+<div class:list={[
+  'relative aspect-video overflow-hidden rounded-lg',
+]}>
+  <a
+    href={`/watch/${vod.id}`}
+    class="block group"
+  >
+    <img
+      src={vod.data['Thumbnail URL']}
+      alt={vod.data['Title']}
+      class="h-full w-full object-cover transition group-hover:scale-105 group-hover:opacity-75"
+    />
+    <div class='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/100 to-transparent p-3'>
+      <h3 class='font-bold text-white truncate text-lg'>
+        {vod.data['Title']}
+      </h3>
+        <div class="flex items-center justify-between text-sm text-gray-200">
+          <div class="font-medium">
+            {vod.data['Stream Date'].toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            })}
+          </div>
+          <div class="flex items-center gap-1">
+            <span class="sr-only">Duration:</span>
+            <Icon name="lucide:clock" />
+            <span>{vod.data['Duration']}</span>
+          </div>
+        </div>
+    </div>
+  </a>
+</div>
