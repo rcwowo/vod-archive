@@ -16,14 +16,15 @@ import { cn } from '@/lib/utils'
 >
   <!-- Header Bar  -->
   <div class="px-4">
-    <div class="flex flex-wrap items-center justify-between gap-4 py-4">
+    <div class="flex flex-wrap items-center justify-between gap-4 py-2">
       <!-- Left Side -->
       <span class="flex flex-row items-center gap-6">
+        <MobileMenu client:load transition:persist />
         <Link
           href="/"
-          class="flex flex-shrink-0 items-center gap-2 text-xl font-semibold transition-colors duration-300 hover:text-primary"
+          class="flex flex-shrink-0 items-center p-2 gap-2 text-xl font-semibold transition-colors duration-300 rounded-md group hover:bg-secondary/50"
         >
-          <Image src={logo} alt="Logo" class="size-8 rounded-md" loading={"eager"} />
+          <Image src={logo} alt="Logo" class="size-8 rounded-md transition-transform group-hover:scale-110 group-hover:rotate-6" loading={"eager"} />
           {SITE.TITLE}
         </Link>
         <nav class="hidden items-center gap-4 text-sm md:flex">
@@ -59,7 +60,6 @@ import { cn } from '@/lib/utils'
             Find By Game
           </span>
         </Link>
-        <MobileMenu client:load transition:persist />
         <ModeToggle client:load transition:persist />
       </div>
     </div>
