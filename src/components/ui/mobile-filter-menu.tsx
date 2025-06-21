@@ -6,10 +6,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { NAV_LINKS } from '@/consts'
-import { Menu } from 'lucide-react'
+import { Search, Calendar, Gamepad } from 'lucide-react'
 
-const MobileMenu = () => {
+const FilterMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -36,25 +35,34 @@ const MobileMenu = () => {
           className="md:hidden"
           title="Menu"
         >
-          <Menu size={16} />
-          <span className="sr-only">Toggle menu</span>
+          <Search size={16} />
+          <span className="sr-only">Search filtering</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-background">
-        {NAV_LINKS.map((item) => (
-          <DropdownMenuItem key={item.href} asChild>
-            <a
-              href={item.href}
-              className="w-full text-lg font-medium capitalize"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </a>
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuItem asChild>
+          <a
+            href="/collection"
+            className="w-full text-lg font-medium capitalize"
+            onClick={() => setIsOpen(false)}
+          >
+            <Calendar size={16} className='mr-2' />
+            Find By Month
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <a
+            href="/games"
+            className="w-full text-lg font-medium capitalize"
+            onClick={() => setIsOpen(false)}
+          >
+            <Gamepad size={16} className='mr-2' />
+            Find By Game
+          </a>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
 
-export default MobileMenu
+export default FilterMenu
