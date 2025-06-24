@@ -7,6 +7,7 @@ A project to archive past VODs from Twitch.
 
 </div>
 
+## About this repo.
 This is a work-in-progress project that uses a combination of Airtable and other automations to maintain a fully functional VOD archive for Twitch streams, or even other platforms. Complete with:
 
 * Chat Replay
@@ -24,3 +25,19 @@ By using the [Airtable loader](https://github.com/ascorbic/astro-loaders) for As
 ![A flow chart that shows how the automation works.](https://cdn.ltwilson.tv/u/ZZfMze.png)
 
 A full guide will (probably) be available at some point.
+
+## How do I modify this?
+Until I make a full guide on how to create the entire system for yourself, you will have to figure out and make your own solution if you intend to fork this project. If you find a bug, please report it to me either here on GitHub, or on Discord.
+
+That being said, if you still want to develop this for yourself, it's easy:
+
+```sh
+# Clone the repo
+git clone https://github.com/theltwilson/vod-archive
+
+# Install dependencies
+cd vod-archive && bun install
+
+# Run the test server
+bun dev
+```
