@@ -48,7 +48,6 @@ export default function SearchClient({ initialQuery = '' }: Props) {
   const [index, setIndex] = useState<IndexResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
-  const abortRef = useRef<AbortController | null>(null)
 
   // Load index once
   useEffect(() => {
@@ -69,8 +68,6 @@ export default function SearchClient({ initialQuery = '' }: Props) {
     }, 250)
     return () => clearTimeout(handler)
   }, [query])
-
-
 
   // VOD results with scoring
   const vodResults: ScoredVod[] = useMemo(() => {
@@ -152,8 +149,8 @@ export default function SearchClient({ initialQuery = '' }: Props) {
             <h2 className="text-xl font-semibold">Introducing search!</h2>
             <span className="text-left text-sm text-muted-foreground">
               <p>
-                You can now find a VOD by simply using keywords to find a VOD,
-                game, or date.
+                You can now find a VOD by simply using keywords like the game,
+                date or title to find a stream.
               </p>
               <p>See the examples below:</p>
             </span>
@@ -198,7 +195,6 @@ export default function SearchClient({ initialQuery = '' }: Props) {
         </div>
       )}
 
-
       {/* VOD results only */}
       {query && combinedResults.length > 0 && (
         <ul className="space-y-4">
@@ -241,14 +237,13 @@ export default function SearchClient({ initialQuery = '' }: Props) {
         </ul>
       )}
 
-      {index &&
-        query &&
-        combinedResults.length === 0 && (
-          <div className="bg-card flex flex-col items-center justify-center gap-2 rounded-lg border p-6 text-sm text-muted-foreground shadow-sm">
-            <FileQuestion size={32} />
-            <p>We couldn't find anything. Try different keywords.</p>
-          </div>
-        )}
+      {/* No results found */}
+      {index && query && combinedResults.length === 0 && (
+        <div className="bg-card flex flex-col items-center justify-center gap-2 rounded-lg border p-6 text-sm text-muted-foreground shadow-sm">
+          <FileQuestion size={32} />
+          <p>We couldn't find anything. Try different keywords.</p>
+        </div>
+      )}
     </div>
   )
 }
