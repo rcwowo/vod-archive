@@ -44,7 +44,15 @@ const normalize = (q: string) =>
     .trim()
 
 export default function SearchClient({ initialQuery = '' }: Props) {
-  const [query, setQuery] = useState(initialQuery)
+  // On mount, check for ?q= in the URL, fallback to initialQuery
+  const getInitialQuery = () => {
+    if (typeof window !== 'undefined') {
+      const urlQ = new URL(window.location.href).searchParams.get('q')
+      if (urlQ) return urlQ
+    }
+    return initialQuery
+  }
+  const [query, setQuery] = useState(getInitialQuery)
   const [index, setIndex] = useState<IndexResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -56,6 +64,22 @@ export default function SearchClient({ initialQuery = '' }: Props) {
       .then((idx) => setIndex(idx))
       .catch((e) => setError(e.message))
       .finally(() => setIsLoading(false))
+  }, [])
+
+  // On mount, sync query state with URL (for back/forward navigation)
+  useEffect(() => {
+    // Only run on first mount
+    const urlQ = typeof window !== 'undefined' ? new URL(window.location.href).searchParams.get('q') : null
+    if (urlQ && urlQ !== query) {
+      setQuery(urlQ)
+    }
+    // Listen for popstate (browser back/forward)
+    const onPopState = () => {
+      const urlQ = new URL(window.location.href).searchParams.get('q') || ''
+      setQuery(urlQ)
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
   }, [])
 
   // Sync query param with URL (debounced)
