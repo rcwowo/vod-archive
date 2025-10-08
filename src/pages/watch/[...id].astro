@@ -23,10 +23,13 @@ const youtubeId = getYouTubeVideoID(vod.data['VOD URL'])
   <main class="flex h-screen flex-col">
     <!-- Top Navigation Bar -->
     <div class="flex items-center justify-between border-b p-4">
-      <a class={buttonVariants({ variant: 'outline' })} href="/">
+      <button 
+        class={buttonVariants({ variant: 'outline' })} 
+        onclick="history.back()"
+      >
         <Icon name="lucide:chevron-left" class="md:mr-2" />
-        <span class="hidden md:inline">Browse</span>
-      </a>
+        <span class="hidden md:inline">Go Back</span>
+      </button>
       <div class="flex items-center text-right gap-4">
         <div class="max-w-[70vw]">
           <h1 class="text-lg font-semibold truncate">{vod.data['Title']}</h1>
