@@ -226,8 +226,13 @@ export default function SearchClient({ initialQuery = '' }: Props) {
             <li key={vod.id} className="group relative">
               <a
                 href={`/watch/${vod.id}`}
-                className="bg-card flex flex-col items-stretch overflow-hidden border transition-shadow hover:shadow-md sm:flex-row lg"
+                className="relative bg-card flex flex-col items-stretch overflow-hidden border transition-shadow hover:shadow-md sm:flex-row"
               >
+                {/* Hover overlay */}
+                <div className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+                </div>
+                {/* The actual stuff */}
                 <div className="w-full aspect-video overflow-hidden sm:flex-none sm:h-24 sm:w-44">
                   <img
                     src={vod.thumbnail}
