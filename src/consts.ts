@@ -20,24 +20,26 @@ export type Link = {
 }
 
 export const SITE: Site = {
-  TITLE: 'Lt. Vault',
+  TITLE: 'vods.rcw.lol',
   DESCRIPTION:
-    'A fully featured archive of past livestreams from Lt. Wilson, including chat replay, date sorting, and game sorting.',
-  EMAIL: 'contact@ltwilson.tv',
+    'A fully featured archive of my past livestreams, including chat replay, search, date sorting and game sorting.',
+  EMAIL: 'riley@rcw.lol',
   VODS_PER_PAGE: 21,
-  SITEURL: 'https://ltwilson.tv',
+  SITEURL: 'https://vods.rcw.lol',
   TWITCH_USER_ID: 194814599
 }
 
 export const NAV_LINKS: Link[] = [
+  /*
   { href: 'https://ltwilson.tv', label: 'Blog' },
   { href: 'https://twitch.tv/theltwilson', label: 'Twitch' },
   { href: 'https://github.com/theltwilson', label: 'GitHub' }
+   */
 ]
 
 export const FOOTER_LINKS: Link[] = [
-  { href: 'https://github.com/theltwilson/vod-archive', label: 'GitHub' },
-  { href: 'contact@ltwilson.tv', label: 'Email' },
+  { href: 'https://github.com/rcwowo/vod-archive', label: 'GitHub' },
+  { href: 'mailto:riley@rcw.lol', label: 'Email' },
   { href: '/rss.xml', label: 'RSS' },
 ]
 
