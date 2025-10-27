@@ -226,21 +226,22 @@ export default function SearchClient({ initialQuery = '' }: Props) {
             <li key={vod.id} className="group relative">
               <a
                 href={`/watch/${vod.id}`}
-                className="bg-card flex items-center gap-4 overflow-hidden border transition-shadow hover:shadow-md"
+                className="bg-card flex flex-col items-stretch overflow-hidden border transition-shadow hover:shadow-md sm:flex-row lg"
               >
-                <div className="h-20 flex-shrink-0 overflow-hidden">
+                <div className="w-full aspect-video overflow-hidden sm:flex-none sm:h-24 sm:w-44">
                   <img
                     src={vod.thumbnail}
                     alt={vod.title}
                     loading="lazy"
-                    className="aspect-video h-full w-full object-cover transition-transform group-hover:scale-105"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
                   />
                 </div>
-                <div className="flex flex-grow flex-col py-2">
-                  <h3 className="line-clamp-2 text-base font-semibold leading-tight">
+                <div className="flex min-w-0 justify-center flex-1 flex-col p-3">
+                  <h3 className="line-clamp-2 text-base font-semibold sm:text-lg">
                     {vod.title}
                   </h3>
-                  <div className="mt-1 flex gap-2 text-xs text-muted-foreground">
+                  <div className="mt-1 sm:mt-0 flex flex-wrap gap-x-3 gap-y-1 text-xs sm:text-sm text-muted-foreground">
                     <span className="flex items-center">
                       <Gamepad size="12" className="mr-1" />
                       {vod.game}
