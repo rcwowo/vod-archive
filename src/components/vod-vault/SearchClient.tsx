@@ -146,7 +146,7 @@ export default function SearchClient({ initialQuery = '' }: Props) {
         <input
           id="vod-search"
           autoFocus
-          className="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
           placeholder="Start searching for a VOD..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -158,7 +158,7 @@ export default function SearchClient({ initialQuery = '' }: Props) {
         </p>
       </div>
       {error && (
-        <div className="rounded-md border border-destructive bg-destructive/10 p-3 text-sm text-destructive">
+        <div className="border border-destructive bg-destructive/10 p-3 text-sm text-destructive">
           Failed to load search index: {error}
         </div>
       )}
@@ -168,7 +168,7 @@ export default function SearchClient({ initialQuery = '' }: Props) {
 
       {/* Instruction card when no query */}
       {!query && (
-        <div className="bg-card flex flex-col justify-between gap-4 rounded-lg border p-6 shadow-sm sm:flex-row">
+  <div className="bg-card flex flex-col justify-between gap-4 border p-6 shadow-sm sm:flex-row">
           <div className="flex flex-col gap-2">
             <h2 className="text-xl font-semibold">Introducing search!</h2>
             <span className="text-left text-sm text-muted-foreground">
@@ -188,7 +188,7 @@ export default function SearchClient({ initialQuery = '' }: Props) {
             <a
               href="/collection"
               className={cn(
-                buttonVariants({ variant: 'secondary', size: 'lg' }),
+                buttonVariants({ variant: 'brand', size: 'lg' }),
                 'flex h-full w-full flex-col gap-1 px-8 py-2',
               )}
             >
@@ -196,14 +196,14 @@ export default function SearchClient({ initialQuery = '' }: Props) {
                 <Calendar size="20" className="mr-2" />
                 Find By Month
               </span>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs">
                 VODs by month and year they aired.
               </p>
             </a>
             <a
               href="/games"
               className={cn(
-                buttonVariants({ variant: 'secondary', size: 'lg' }),
+                buttonVariants({ variant: 'brand', size: 'lg' }),
                 'flex h-full w-full flex-col gap-1 px-8 py-2',
               )}
             >
@@ -211,7 +211,7 @@ export default function SearchClient({ initialQuery = '' }: Props) {
                 <Gamepad size="20" className="mr-2" />
                 Find By Game
               </span>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs">
                 Browse VODs by game played.
               </p>
             </a>
@@ -226,9 +226,9 @@ export default function SearchClient({ initialQuery = '' }: Props) {
             <li key={vod.id} className="group relative">
               <a
                 href={`/watch/${vod.id}`}
-                className="bg-card flex items-center gap-4 overflow-hidden rounded-lg border transition-shadow hover:shadow-md"
+                className="bg-card flex items-center gap-4 overflow-hidden border transition-shadow hover:shadow-md"
               >
-                <div className="h-20 flex-shrink-0 overflow-hidden rounded-md">
+                <div className="h-20 flex-shrink-0 overflow-hidden">
                   <img
                     src={vod.thumbnail}
                     alt={vod.title}
@@ -263,7 +263,7 @@ export default function SearchClient({ initialQuery = '' }: Props) {
 
       {/* No results found */}
       {index && query && combinedResults.length === 0 && (
-        <div className="bg-card flex flex-col items-center justify-center gap-2 rounded-lg border p-6 text-sm text-muted-foreground shadow-sm">
+        <div className="bg-card flex flex-col items-center justify-center gap-2 border p-6 text-sm text-muted-foreground shadow-sm">
           <FileQuestion size={32} />
           <p>We couldn't find anything. Try different keywords.</p>
         </div>
