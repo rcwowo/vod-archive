@@ -27,34 +27,36 @@ const MobileMenu = () => {
     }
   }, [])
 
-  return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className="md:hidden"
-          title="Menu"
-        >
-          <Menu size={16} />
-          <span className="sr-only">Toggle menu</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-background">
-        {NAV_LINKS.map((item) => (
-          <DropdownMenuItem key={item.href} asChild>
-            <a
-              href={item.href}
-              className="w-full text-lg font-medium capitalize"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </a>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
+  if (NAV_LINKS.length > 0) {
+    return (
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className="md:hidden"
+            title="Menu"
+          >
+            <Menu size={16} />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="bg-background">
+          {NAV_LINKS.map((item) => (
+            <DropdownMenuItem key={item.href} asChild>
+              <a
+                href={item.href}
+                className="w-full text-lg font-medium capitalize"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </a>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )
+  }
 }
 
 export default MobileMenu
